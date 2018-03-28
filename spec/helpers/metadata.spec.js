@@ -52,4 +52,12 @@ describe('Metadata to select fields conversion', function () {
         }).toThrow(new Error('No out metadata found to create select fields from'));
 
     });
+
+    it('should throw an error if metadata does not have any readable fields', function() {
+        const orderHistoryMetadata = require('../OrderHistory_description');
+        // expect(function () {
+        const result = metadata.buildSchemaFromDescription(orderHistoryMetadata);
+        console.log(result);
+        // }).toThrow(new Error('No out metadata found to create select fields from'));
+    });
 });

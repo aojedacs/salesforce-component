@@ -44,7 +44,7 @@ describe('Salesforce Entry', function () {
 
     var retrieveContactsResponse = singleContact;
 
-    xdescribe('Process', function () {
+    describe('Process', function () {
 
         it('should handle the API_DISABLED_FOR_ORG error code by creating a specific error with error code', function () {
 
@@ -54,7 +54,7 @@ describe('Salesforce Entry', function () {
             }];
 
             nock('http://localhost:1234')
-                .get('/services/data/v25.0/sobjects/Contact/describe')
+                .get('/services/data/v35.0/sobjects/Contact/describe')
                 .reply(403, JSON.stringify(apiResponse));
 
             var cfg = {
@@ -96,9 +96,9 @@ describe('Salesforce Entry', function () {
         xit('Query Returns No Objects', function () {
 
             nock('http://localhost:1234')
-                .get('/services/data/v25.0/sobjects/Contact/describe')
+                .get('/services/data/v35.0/sobjects/Contact/describe')
                 .reply(200, JSON.stringify(require('./objectDescription.json')))
-                .get('/services/data/v25.0/query?q=select%20AccountId%2CLastName%2CFirstName%2CSalutation%2COtherStreet%2COtherCity%2COtherState%2COtherPostalCode%2COtherCountry%2CMailingStreet%2CMailingCity%2CMailingState%2CMailingPostalCode%2CMailingCountry%2CPhone%2CFax%2CMobilePhone%2CHomePhone%2COtherPhone%2CAssistantPhone%2CReportsToId%2CEmail%2CTitle%2CDepartment%2CAssistantName%2CLeadSource%2CBirthdate%2CDescription%2COwnerId%2CEmailBouncedReason%2CEmailBouncedDate%2CJigsaw%2CLevel__c%2CLanguages__c%20from%20Contact%20where%20SystemModstamp%20%3E%201978-04-06T11%3A00%3A00.000Z')
+                .get('/services/data/v35.0/query?q=select%20AccountId%2CLastName%2CFirstName%2CSalutation%2COtherStreet%2COtherCity%2COtherState%2COtherPostalCode%2COtherCountry%2CMailingStreet%2CMailingCity%2CMailingState%2CMailingPostalCode%2CMailingCountry%2CPhone%2CFax%2CMobilePhone%2CHomePhone%2COtherPhone%2CAssistantPhone%2CReportsToId%2CEmail%2CTitle%2CDepartment%2CAssistantName%2CLeadSource%2CBirthdate%2CDescription%2COwnerId%2CEmailBouncedReason%2CEmailBouncedDate%2CJigsaw%2CLevel__c%2CLanguages__c%2C%20Id%20from%20Contact%20where%20SystemModstamp%20%3E%201978-04-06T11%3A00%3A00.000Z')
                 .matchHeader('Authorization', 'Bearer aRefreshedToken')
                 .reply(200, JSON.stringify({ totalSize: 0 }));
 
