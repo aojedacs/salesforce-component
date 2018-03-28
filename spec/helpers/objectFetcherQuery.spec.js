@@ -6,7 +6,7 @@ describe('Fetching objects', function() {
     var fetchObjects = require('../../lib/helpers/objectFetcherQuery');
 
     var params = {};
-    var token = token;
+    var token = "foo";
 
     beforeEach(function() {
         params = {
@@ -25,9 +25,11 @@ describe('Fetching objects', function() {
     it('should send given query and return result', function() {
 
         var expectedResult = [];
-        nock('https://eu11.salesforce.com')
-            .get('/services/data/v25.0/query?q=SELECT%20id%2C%20LastName%2C%20FirstName%20FROM%20Contact')
-            .matchHeader('Authorization', 'Bearer ' + token)
+        //nock.recorder.rec();
+
+        nock('https://eu11.salesforce.com:443', {"encodedQueryParams":true})
+            .get('/services/data/v25.0/query')
+            .query({"q":"SELECT%20id%2C%20LastName%2C%20FirstName%20FROM%20Contact"})
             .reply(200, []);
 
         var objectsPromise = fetchObjects(params);

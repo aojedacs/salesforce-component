@@ -6,14 +6,14 @@ describe('Verify Credentials', function () {
 
     var cfg;
     var cb;
-    var BASE_URL = 'https://someselasforcenode.com';
+    var BASE_URL = 'https://eu11.salesforce.com';
     var path = '/services/data/v32.0/sobjects';
 
     beforeEach(function () {
         cfg = {
             oauth: {
                 access_token: 'some-access-id',
-                instance_url: 'https://someselasforcenode.com'
+                instance_url: 'https://eu11.salesforce.com'
             }
         };
 
